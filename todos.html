@@ -1,0 +1,56 @@
+<head>
+  <title>todos</title>
+</head>
+
+<body>
+  
+
+  <div id="todoapp">
+
+    {{> addTodo}}
+
+    <section id="main">
+      <input id="toggle-all" type="checkbox">
+      <label for="toggle-all">Mark all as complete</label>
+      
+      {{> todos}}
+
+
+
+    </section>
+
+    <footer>
+      <a id="clear-completed">Clear completed</a>
+      <div id="todo-count"></div>
+    </footer>
+
+  </div>
+  
+
+</body>
+
+<template name="addTodo">
+	<header>
+      <h1>Todos</h1>
+      <input id="new-todo" type="text" placeholder="What needs to be done?"/>
+    </header>
+</template>
+
+<template name="todos">
+	<ul id="todo-list">
+	{{#each todoList}}
+	<li><div class="view">
+      <input class="toggle" type="checkbox" checked="checked"/>
+      <label>{{title}}</label>
+      <a class="destroy" data-id="{{_id}}"></a>
+    </div><input class="edit" type="text" value="{{title}}"/></li>
+    {{/each}}
+    </ul>
+</template>
+
+
+
+
+
+  
+
