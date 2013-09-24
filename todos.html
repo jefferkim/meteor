@@ -4,7 +4,6 @@
 
 <body>
   
-
   <div id="todoapp">
 
     {{> addTodo}}
@@ -15,14 +14,11 @@
       
       {{> todos}}
 
-
+      {{> count}}
 
     </section>
 
-    <footer>
-      <a id="clear-completed">Clear completed</a>
-      <div id="todo-count"></div>
-    </footer>
+    
 
   </div>
   
@@ -36,16 +32,24 @@
     </header>
 </template>
 
+
 <template name="todos">
 	<ul id="todo-list">
 	{{#each todoList}}
-	<li><div class="view">
-      <input class="toggle" type="checkbox" checked="checked"/>
+	<li {{#if done}} class="done" {{/if}}><div class="view"  data-id="{{_id}}">
+      <input class="toggle" type="checkbox" {{#if done}} checked="checked" {{/if}}/>
       <label>{{title}}</label>
-      <a class="destroy" data-id="{{_id}}"></a>
+      <a class="destroy"></a>
     </div><input class="edit" type="text" value="{{title}}"/></li>
     {{/each}}
     </ul>
+</template>
+
+<template name="count">
+    <footer>
+      {{#if completedCount}}<a id="clear-completed">Clear {{completedCount}}} completed item</a>{{/if}}
+      <div id="todo-count">{{undoneCount}} item left</div>
+    </footer>
 </template>
 
 
